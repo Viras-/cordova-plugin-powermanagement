@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="at.gofg.sportscomputer.powermanagement"
+      version="0.1.0">
+    <name>PowerManagement</name>
+    <description>PowerManagement plugin for Cordova</description>
+    <license>GPL</license>
+    <keywords>cordova,powermanagement</keywords>
+
+    <js-module src="www/powermanagement.js" name="device">
+        <clobbers target="powerManagement" />
+    </js-module>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PowerManagement">
+                <param name="wp-package" value="PowerManagement"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp/PowerManagement.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PowerManagement">
+                <param name="wp-package" value="PowerManagement"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp/PowerManagement.cs" />
+    </platform>
+</plugin>

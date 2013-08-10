@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
            id="at.gofg.sportscomputer.powermanagement"
-      version="0.1.0">
+      version="1.0.0">
     <name>PowerManagement</name>
     <description>PowerManagement plugin for Cordova</description>
     <license>GPL</license>
     <keywords>cordova,powermanagement</keywords>
 
     <js-module src="www/powermanagement.js" name="device">
-        <clobbers target="powerManagement" />
+        <clobbers target="window.powerManagement" />
     </js-module>
 
     <!-- wp7 -->

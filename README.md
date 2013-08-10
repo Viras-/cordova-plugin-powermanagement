@@ -1,37 +1,19 @@
 PowerManagement
 ===============
-Plugin for Cordova (2.0+)
+Plugin for Cordova (3.0+)
 
 The PowerManagement plugin offers access to the devices power-management functionality.
 It should be used for applications which keep running for a long time without any user interaction.
 
 For details on power functionality see:
 
-* Android: [PowerManager](http://developer.android.com/reference/android/os/PowerManager.html)
-* iOS: [idleTimerDisabled](http://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/Reference/Reference.html#//apple_ref/occ/instp/UIApplication/idleTimerDisabled)
 * WindowsPhone: [UserIdleDetectionMode](http://msdn.microsoft.com/en-US/library/windowsphone/develop/microsoft.phone.shell.phoneapplicationservice.useridledetectionmode%28v=vs.105%29.aspx)
 
-Platforms
+Installation
 ---------
-For all platforms copy the *PowerManagement.js* file to your applications "www" folder and load it using the according HTML code.
-`<script type="text/javascript" charset="utf-8" src="lib/cordova/powermanagement.js"></script>`
+Install the plugin using the cordova command line utility:
 
-### Android
-Copy the *PowerManagement.java* file to your *src/* directory.
-
-Edit your *AndroidManifest.xml* and add the following permission:
-`<uses-permission android:name="android.permission.WAKE_LOCK" />`
-
-In addition you have to edit your *res/xml/plugins.xml* file to let Cordova know about the plugin:
-`<plugin name="PowerManagement" value="org.apache.cordova.plugin.PowerManagement"/>`
-
-### iOS
-Copy the *PowerManagement.h* and *PowerManagement.m* files to your projects "Plugins" folder.
-
-Add the PowerManagement plugin to the *Cordova.plist* file (to the Plugins list). Both Key and Value are "PowerManagement".
-
-### WindowsPhone
-Copy the *PowerManagement.cs* file to your projects "Plugins" folder.
+`$ cordova plugin add https://github.com/Viras-/cordova-plugin-powermanagement.git`
 
 License
 =======

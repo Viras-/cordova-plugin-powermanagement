@@ -32,6 +32,7 @@ namespace Cordova.Extension.Commands
     {
         public void acquire(string options) {
             PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
+            PhoneApplicationService.Current.ApplicationIdleDetectionMode = IdleDetectionMode.Disabled;
             
             DispatchCommandResult();
         }

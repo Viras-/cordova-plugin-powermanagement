@@ -26,8 +26,10 @@ var PowerManagement = function() {};
  * @param successCallback function to be called when the wake-lock was acquired successfully
  * @param errorCallback function to be called when there was a problem with acquiring the wake-lock
  */
-PowerManagement.prototype.acquire = function(successCallback,failureCallback) {
-    cordova.exec(successCallback, failureCallback, 'PowerManagement', 'acquire', []);
+PowerManagement.prototype.acquire = function(successCallback,failureCallback, runLockScreen) {
+    if( typeof runLockScreen === "undefined" ) runLockScreen = false;
+
+    cordova.exec(successCallback, failureCallback, 'PowerManagement', 'acquire', [runLockScreen]);
 }
 
 /**

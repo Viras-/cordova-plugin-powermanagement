@@ -30,13 +30,32 @@ namespace Cordova.Extension.Commands
 {
     class PowerManagement : BaseCommand
     {
+        /// <summary>
+        /// acquires the stay awake lock by disabling UserIdleDetection mode and optionally disable the ApplicationIdleDetection
+        /// </summary>
+        /// <param name="options">acquire options</param>
+        /// exec(win, fail, 'PowerManagement', 'acquire', [runLockScreen]);
         public void acquire(string options) {
+            string[] optionStrings = JsonHelper.Deserialize<string[]>(options);
+            bool runLockScreen = false;
+            bool.TryParse(optionStrings[0], out runLockScreen);
+
             PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
-            PhoneApplicationService.Current.ApplicationIdleDetectionMode = IdleDetectionMode.Disabled;
+
+            // check if we should continue running within the lock screen
+            if (runLockScreen)
+            {
+                PhoneApplicationService.Current.ApplicationIdleDetectionMode = IdleDetectionMode.Disabled;
+            }
             
             DispatchCommandResult();
         }
 
+        /// <summary>
+        /// releases the stay awake lock
+        /// </summary>
+        /// <param name="options">release options</param>
+        /// exec(win, fail, 'PowerManagement', 'release', []);
         public void release(string options)
         {
             PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Enabled;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
            id="at.gofg.sportscomputer.powermanagement"
-      version="1.0.0">
+      version="1.1.0">
     <name>PowerManagement</name>
     <description>PowerManagement plugin for Cordova</description>
     <license>GPL</license>
@@ -31,5 +31,32 @@
         </config-file>
 
         <source-file src="src/wp/PowerManagement.cs" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">            
+        <config-file target="config.xml" parent="/widget">
+            <feature name="PowerManagement">
+                <param name="ios-package" value="PowerManagement" /> 
+            </feature>
+        </config-file>
+    
+        <header-file src="src/ios/PowerManagement.h" />
+	    <source-file src="src/ios/PowerManagement.m" />   	
+    </platform>
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PowerManagement" >
+                <param name="android-package" value="org.apache.cordova.plugin.PowerManagement"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+        </config-file>
+
+	<source-file src="src/android/PowerManagement.java" target-dir="src/at/gofg/sportscomputer/" />
     </platform>
 </plugin>

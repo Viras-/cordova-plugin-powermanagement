@@ -44,4 +44,19 @@
         <header-file src="src/ios/PowerManagement.h" />
 	    <source-file src="src/ios/PowerManagement.m" />   	
     </platform>
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PowerManagement" >
+                <param name="android-package" value="org.apache.cordova.plugin.PowerManagement"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+        </config-file>
+
+	<source-file src="src/android/PowerManagement.java" target-dir="src/at/gofg/sportscomputer/" />
+    </platform>
 </plugin>

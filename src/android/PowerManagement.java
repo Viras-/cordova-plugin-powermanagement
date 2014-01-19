@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Wolfgang Koller
+ * Copyright 2013-2014 Wolfgang Koller
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
  * Cordova (Android) plugin for accessing the power-management functions of the device
  * @author Wolfgang Koller <viras@users.sourceforge.net>
  */
-package at.gofg.sportscomputer;
+package org.apache.cordova.powermanagement;
 
 import org.json.JSONArray;
 import org.json.JSONException;

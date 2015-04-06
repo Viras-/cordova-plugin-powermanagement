@@ -41,6 +41,7 @@ public class PowerManagement extends CordovaPlugin {
 	// As we only allow one wake-lock, we keep a reference to it here
 	private PowerManager.WakeLock wakeLock = null;
 	private PowerManager powerManager = null;
+	private boolean releaseOnPause = true;
 
 	/**
 	 * Fetch a reference to the power-service when the plugin is initialized
@@ -62,16 +63,22 @@ public class PowerManagement extends CordovaPlugin {
 
 		try {
 			if( action.equals("acquire") ) {
-					if( args.length() > 0 && args.getBoolean(0) ) {
-						Log.d("PowerManagementPlugin", "Only dim lock" );
-						result = this.acquire( PowerManager.SCREEN_DIM_WAKE_LOCK );
-					}
-					else {
-						result = this.acquire( PowerManager.FULL_WAKE_LOCK );
-					}
-			}
-			else if( action.equals("release") ) {
+				if( args.length() > 0 && args.getBoolean(0) ) {
+					Log.d("PowerManagementPlugin", "Only dim lock" );
+					result = this.acquire( PowerManager.SCREEN_DIM_WAKE_LOCK );
+				}
+				else {
+					result = this.acquire( PowerManager.FULL_WAKE_LOCK );
+				}
+			} else if( action.equals("release") ) {
 				result = this.release();
+			} else if( action.equals("setReleaseOnPause") ) {
+				try {
+					this.releaseOnPause = args.getBoolean(0);
+					result = new PluginResult(PluginResult.Status.OK);
+				} catch (Exception e) {
+					result = new PluginResult(PluginResult.Status.ERROR, "Could not set releaseOnPause");
+				}
 			}
 		}
 		catch( JSONException e ) {
@@ -138,7 +145,9 @@ public class PowerManagement extends CordovaPlugin {
 	 */
 	@Override
 	public void onPause(boolean multitasking) {
-		if( this.wakeLock != null ) this.wakeLock.release();
+		if( this.releaseOnPause && this.wakeLock != null ) {
+			this.wakeLock.release();
+		}
 
 		super.onPause(multitasking);
 	}
@@ -148,7 +157,9 @@ public class PowerManagement extends CordovaPlugin {
 	 */
 	@Override
 	public void onResume(boolean multitasking) {
-		if( this.wakeLock != null ) this.wakeLock.acquire();
+		if( this.releaseOnPause && this.wakeLock != null ) {
+			this.wakeLock.acquire();
+		}
 
 		super.onResume(multitasking);
 	}

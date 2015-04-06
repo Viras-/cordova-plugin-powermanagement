@@ -1,12 +1,12 @@
 /*
  * Copyright 2013-2014 Wolfgang Koller
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,10 +48,10 @@ public class PowerManagement extends CordovaPlugin {
 	@Override
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);
-		
+
 		this.powerManager = (PowerManager) cordova.getActivity().getSystemService(Context.POWER_SERVICE);
 	}
-	
+
 	@Override
 	public boolean execute(String action, JSONArray args,
 			CallbackContext callbackContext) throws JSONException {
@@ -59,7 +59,7 @@ public class PowerManagement extends CordovaPlugin {
 		PluginResult result = null;
 		Log.d("PowerManagementPlugin", "Plugin execute called - " + this.toString() );
 		Log.d("PowerManagementPlugin", "Action is " + action );
-		
+
 		try {
 			if( action.equals("acquire") ) {
 					if( args.length() > 0 && args.getBoolean(0) ) {
@@ -77,11 +77,11 @@ public class PowerManagement extends CordovaPlugin {
 		catch( JSONException e ) {
 			result = new PluginResult(Status.JSON_EXCEPTION, e.getMessage());
 		}
-		
+
 		callbackContext.sendPluginResult(result);
 		return true;
 	}
-	
+
 	/**
 	 * Acquire a wake-lock
 	 * @param p_flags Type of wake-lock to acquire
@@ -89,7 +89,7 @@ public class PowerManagement extends CordovaPlugin {
 	 */
 	private PluginResult acquire( int p_flags ) {
 		PluginResult result = null;
-		
+
 		if (this.wakeLock == null) {
 			this.wakeLock = this.powerManager.newWakeLock(p_flags, "PowerManagementPlugin");
 			try {
@@ -104,30 +104,35 @@ public class PowerManagement extends CordovaPlugin {
 		else {
 			result = new PluginResult(PluginResult.Status.ILLEGAL_ACCESS_EXCEPTION,"WakeLock already active - release first");
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Release an active wake-lock
 	 * @return PluginResult containing the status of the release process
 	 */
 	private PluginResult release() {
 		PluginResult result = null;
-		
+
 		if( this.wakeLock != null ) {
-			this.wakeLock.release();
+			try {
+				this.wakeLock.release();
+				result = new PluginResult(PluginResult.Status.OK, "OK");
+			}
+			catch (Exception e) {
+				result = new PluginResult(PluginResult.Status.ILLEGAL_ACCESS_EXCEPTION, "WakeLock already released");
+			}
+
 			this.wakeLock = null;
-			
-			result = new PluginResult(PluginResult.Status.OK, "OK");
 		}
 		else {
 			result = new PluginResult(PluginResult.Status.ILLEGAL_ACCESS_EXCEPTION, "No WakeLock active - acquire first");
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Make sure any wakelock is released if the app goes into pause
 	 */
@@ -137,7 +142,7 @@ public class PowerManagement extends CordovaPlugin {
 
 		super.onPause(multitasking);
 	}
-	
+
 	/**
 	 * Make sure any wakelock is acquired again once we resume
 	 */

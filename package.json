@@ -1,0 +1,18 @@
+{
+  "name": "cordova-plugin-powermanagement-orig",
+  "version": "1.0.0",
+  "description": "Plugin for managing the power state (i.e. idle switching) for cordova 3.0+. The original one.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viras-/cordova-plugin-powermanagement.git"
+  },
+  "author": "Viras-",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Viras-/cordova-plugin-powermanagement/issues"
+  },
+  "homepage": "https://github.com/Viras-/cordova-plugin-powermanagement#readme"
+}

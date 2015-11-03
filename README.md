@@ -13,6 +13,10 @@ For details on power functionality see:
 
 Installation
 ---------
+Install using npm:
+
+`$ npm i cordova-plugin-powermanagement-orig`
+
 Install the plugin using the cordova command line utility:
 
 `$ cordova plugin add https://github.com/Viras-/cordova-plugin-powermanagement.git`

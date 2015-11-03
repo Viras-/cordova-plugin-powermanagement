@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
         id="at.gofg.sportscomputer.powermanagement"
-        version="1.0.0">
+        version="1.1.0">
     <name>PowerManagement</name>
     <description>PowerManagement plugin for Cordova</description>
     <license>Apache 2.0</license>
@@ -34,17 +34,17 @@
     </platform>
 
     <!-- ios -->
-    <platform name="ios">            
+    <platform name="ios">
         <config-file target="config.xml" parent="/widget">
             <feature name="PowerManagement">
-                <param name="ios-package" value="PowerManagement" /> 
+                <param name="ios-package" value="PowerManagement" />
             </feature>
         </config-file>
     
         <header-file src="src/ios/PowerManagement.h" />
-        <source-file src="src/ios/PowerManagement.m" />   	
+        <source-file src="src/ios/PowerManagement.m" />
     </platform>
-    
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">

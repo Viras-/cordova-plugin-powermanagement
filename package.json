@@ -14,5 +14,12 @@
     "bugs": {
         "url": "https://github.com/Viras-/cordova-plugin-powermanagement/issues"
     },
-    "homepage": "https://github.com/Viras-/cordova-plugin-powermanagement#readme"
+    "homepage": "https://github.com/Viras-/cordova-plugin-powermanagement#readme",
+    "keywords": [
+        "ecosystem:cordova",
+        "cordova-android",
+        "cordova-ios",
+        "cordova-wp7",
+        "cordova-wp8"
+    ]
 }

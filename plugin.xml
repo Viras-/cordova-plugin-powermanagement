@@ -33,6 +33,13 @@
         <source-file src="src/wp/PowerManagement.cs" />
     </platform>
 
+  <!-- windows -->
+  <platform name="windows">
+    <js-module src="src/windows/PowerManagementProxy.js" name="PowerManagmentProxy">
+      <merges target="" />
+    </js-module>
+  </platform>
+
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/widget">
